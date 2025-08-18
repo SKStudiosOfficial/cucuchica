@@ -7,18 +7,27 @@ const CONFIG = {
 // Burger y menú móvil
 const burger = document.getElementById("burger");
 const panel = document.getElementById("mobile-panel");
+
 if (burger && panel) {
-  burger.addEventListener("click", () => {
-    const open = panel.style.display === "block";
-    panel.style.display = open ? "none" : "block";
-    burger.setAttribute("aria-expanded", String(!open));
-    panel.setAttribute("aria-hidden", String(open));
-  });
-  panel.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', () => {
-    panel.style.display = "none";
-    burger.setAttribute("aria-expanded", "false");
-    panel.setAttribute("aria-hidden", "true");
-  }));
+  const toggle = () => {
+    const isOpen = panel.classList.toggle("open");
+    burger.classList.toggle("open", isOpen);
+    burger.setAttribute("aria-expanded", String(isOpen));
+    panel.setAttribute("aria-hidden", String(!isOpen));
+    document.documentElement.style.overflow = isOpen ? "hidden" : ""; // bloquear scroll al abrir
+  };
+
+  burger.addEventListener("click", toggle);
+
+  panel.querySelectorAll("[data-close]").forEach(a =>
+    a.addEventListener("click", () => {
+      panel.classList.remove("open");
+      burger.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+      panel.setAttribute("aria-hidden", "true");
+      document.documentElement.style.overflow = "";
+    })
+  );
 }
 
 // Reserva vía WhatsApp
