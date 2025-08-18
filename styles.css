@@ -111,3 +111,63 @@ footer{padding:36px 0;color:#bcd0c9}
   .footer-grid{grid-template-columns:1fr}
   .form .row{grid-template-columns:1fr}
 }
+
+/* ---- Header: limpiar estilos de botones para que no se vean "dobles" ---- */
+.site-header .nav-cta .btn{
+  background: transparent;
+  border-color: rgba(255,255,255,.12);
+  color: var(--text);
+}
+.site-header .nav-cta .btn:hover{
+  background: rgba(255,255,255,.06);
+}
+.site-header .nav-cta .btn.primary{
+  background: linear-gradient(135deg,var(--brand),#16a34a);
+  color: #08110e;
+  border-color: transparent;
+  box-shadow: 0 8px 18px rgba(16,185,129,.35);
+}
+
+/* ---- Mobile panel: capa visible y animación ---- */
+.mobile-panel{
+  position: fixed;
+  inset: 64px 0 0 0;
+  display: none;               /* por defecto cerrado */
+  z-index: 999;                /* por encima del header y del contenido */
+  background: rgba(8,16,14,.96);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 16px;
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: transform .18s ease, opacity .18s ease;
+}
+.mobile-panel.open{
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+.mobile-panel a{
+  display:block;
+  padding:14px 12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color: var(--text);
+}
+.mobile-panel a:hover{ background: rgba(255,255,255,.06); }
+
+/* Burger en estado abierto (opcional “X”) */
+.burger.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2){ opacity: 0; }
+.burger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+.burger span{ transition: transform .18s, opacity .18s; }
+
+/* Evitar contorno de foco feo en los botones del header; usar focus visible bonito */
+.btn{ outline: none; }
+.btn:focus-visible{
+  box-shadow: 0 0 0 2px rgba(16,185,129,.45);
+}
+
+/* (Opcional) Que los <a> del menú superior no pinten “pill” detrás del botón secundario */
+.nav-links a{ background: transparent; }
+.nav-links a:hover{ background: rgba(255,255,255,.06); }
+
