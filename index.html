@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Balneario Vegasolita — Cucuchica, Tovar Mérida</title>
+  <meta name="description" content="Balneario Vegasolita en Cucuchica, Tovar (Mérida). Pozos naturales, parrilleras, áreas verdes, eventos y reservas por WhatsApp." />
+  <meta name="theme-color" content="#10b981" />
+  <link rel="icon" href="assets/favicon.svg" />
+
+  <!-- Open Graph / WhatsApp preview -->
+  <meta property="og:title" content="Balneario Vegasolita — Cucuchica, Tovar Mérida" />
+  <meta property="og:description" content="Aguas cristalinas, parrilleras y ambiente familiar. ¡Reserva tu día perfecto en Vegasolita!" />
+  <meta property="og:image" content="assets/og-vegasolita.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cucuchica.com/vegasolita" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Inicio Vegasolita">
+        <img src="assets/logo-vegasolita.svg" alt="Logo Vegasolita" />
+        <span>Vegasolita · Cucuchica</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#precios">Precios</a>
+        <a href="#reservas">Reservas</a>
+        <a href="#galeria">Galería</a>
+        <a href="#como-llegar">Cómo llegar</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn" href="#precios">Ver precios</a>
+        <a class="btn primary" href="#reservas">Reservar</a>
+      </div>
+
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-controls="mobile-panel" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="mobile-panel" class="mobile-panel" aria-hidden="true">
+      <a href="#servicios" data-close>Servicios</a>
+      <a href="#precios" data-close>Precios</a>
+      <a href="#reservas" data-close>Reservas</a>
+      <a href="#galeria" data-close>Galería</a>
+      <a href="#como-llegar" data-close>Cómo llegar</a>
+      <a href="#faq" data-close>FAQ</a>
+      <a href="#contacto" data-close>Contacto</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="inicio" class="hero">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="overlay" aria-hidden="true"></div>
+    <div class="container content">
+      <div class="super">💧 Aguas claras · 🔥 Parrilleras · 👨‍👩‍👧‍👦 Ambiente familiar</div>
+      <h1>Balneario <span class="brand">Vegasolita</span> — Cucuchica, Tovar Mérida</h1>
+      <p class="sub">Disfruta de pozos naturales y áreas verdes en el corazón de Cucuchica. Reserva tu espacio para pasar un día inolvidable con familia y amigos.</p>
+      <div class="hero-ctas">
+        <a class="btn primary" href="#reservas">Reservar ahora</a>
+        <a class="btn" href="#galeria">Ver galería</a>
+      </div>
+
+      <div class="status" id="statusBar">
+        <div class="pill" title="Clima de referencia en Tovar">
+          ☀️ <strong id="clima">Clima: despejado</strong>
+        </div>
+        <div class="pill">📅 <strong>Fin de semana: cupos disponibles</strong></div>
+        <div class="pill">💳 <strong>Pagos: Bs. / USD / Pago Móvil / Zelle</strong></div>
+      </div>
+
+      <div class="badges">
+        <div class="badge">💦 Pozos naturales con agua fría y cristalina</div>
+        <div class="badge">🔥 Zonas de parrilla, mesas y sombras</div>
+        <div class="badge">🅿️ Estacionamiento y áreas familiares</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Servicios -->
+  <section id="servicios">
+    <div class="container">
+      <h2 class="section-title">Servicios</h2>
+      <div class="grid grid-3">
+        <article class="card">
+          <img src="assets/serv-ingreso.webp" alt="Ingreso al balneario" loading="lazy">
+          <div class="body">
+            <span class="tag">Ingreso diario</span>
+            <h3>Acceso al balneario</h3>
+            <p>Adultos y niños. Jornadas de <strong>Full Day</strong> y <strong>Medio Día</strong> (consulte disponibilidad).</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="assets/serv-parrilla.webp" alt="Parrilleras y mesas" loading="lazy">
+          <div class="body">
+            <span class="tag">Alquiler</span>
+            <h3>Parrilleras, mesas y toldos</h3>
+            <p>Alquiler de parrilleras, mesas, sillas y toldos. Opcional de lockers para pertenencias.</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="assets/serv-familia.webp" alt="Área familiar y juegos" loading="lazy">
+          <div class="body">
+            <span class="tag">Zonas</span>
+            <h3>Áreas familiares</h3>
+            <p>Sombras naturales, zonas verdes y espacios para compartir en grupo.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Precios -->
+  <section id="precios" class="pricing">
+    <div class="container">
+      <h2 class="section-title">Planes y precios</h2>
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="body">
+            <span class="tag">Ingreso</span>
+            <h3>Entrada general</h3>
+            <p class="price">$3 <small>/ persona</small></p>
+            <ul>
+              <li>Acceso a pozos naturales</li>
+              <li>Áreas comunes</li>
+              <li>Horario: 9:00 — 5:00</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card">
+          <div class="body">
+            <span class="tag">Full Day</span>
+            <h3>Parrillera + Mesa</h3>
+            <p class="price">$15 <small>/ set</small></p>
+            <ul>
+              <li>Parrillera + mesa + 4 sillas</li>
+              <li>Zona de sombra</li>
+              <li>Reserva anticipada</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card">
+          <div class="body">
+            <span class="tag">Eventos</span>
+            <h3>Cumpleaños / Empresas</h3>
+            <p class="price">Desde $60</p>
+            <ul>
+              <li>Espacio reservado</li>
+              <li>Asesoría y logística</li>
+              <li>Decoración opcional</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <p class="muted">*Precios de referencia. Confirma disponibilidad y tarifas actualizadas al reservar.</p>
+    </div>
+  </section>
+
+  <!-- Reservas -->
+  <section id="reservas">
+    <div class="container">
+      <h2 class="section-title">Reservas</h2>
+      <div class="grid grid-2">
+        <form class="card form" id="reserveForm">
+          <div class="body">
+            <div class="row">
+              <label>
+                <span>Nombre y apellido</span>
+                <input type="text" name="name" placeholder="Tu nombre" required />
+              </label>
+              <label>
+                <span>Fecha de visita</span>
+                <input type="date" name="date" required />
+              </label>
+            </div>
+            <div class="row">
+              <label>
+                <span>Personas</span>
+                <input type="number" name="people" min="1" value="4" required />
+              </label>
+              <label>
+                <span>Servicio</span>
+                <select name="service">
+                  <option>Entrada general</option>
+                  <option>Parrillera + Mesa (Full Day)</option>
+                  <option>Evento (Cumpleaños/Empresas)</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              <span>Comentarios</span>
+              <textarea name="notes" rows="3" placeholder="Ej: zona de sombra, hora de llegada, etc."></textarea>
+            </label>
+            <div class="actions">
+              <button class="btn primary" type="submit">Reservar por WhatsApp</button>
+              <button class="btn" type="reset">Limpiar</button>
+            </div>
+          </div>
+        </form>
+        <div class="card">
+          <img src="assets/reserva.webp" alt="Reservas en Vegasolita" loading="lazy">
+          <div class="body">
+            <h3>¿Cómo funciona?</h3>
+            <ol>
+              <li>Completa el formulario.</li>
+              <li>Te llevamos a WhatsApp con el mensaje listo.</li>
+              <li>Confirma pago y listo. ¡Te esperamos!</li>
+            </ol>
+            <p class="muted">Métodos: Bs. / USD / Pago Móvil / Zelle / Punto (consultar).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería -->
+  <section id="galeria" class="gallery">
+    <div class="container">
+      <h2 class="section-title">Galería</h2>
+      <div class="grid grid-3">
+        <img src="assets/gal-1.webp" alt="Pozo natural en Vegasolita" loading="lazy" />
+        <img src="assets/gal-2.webp" alt="Cascada de Cucuchica" loading="lazy" />
+        <img src="assets/gal-3.webp" alt="Áreas verdes y familiares" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo llegar -->
+  <section id="como-llegar" class="howto">
+    <div class="container">
+      <h2 class="section-title">Cómo llegar</h2>
+      <div class="grid grid-2">
+        <iframe class="map" title="Mapa Vegasolita"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d0!2d-71.75!3d8.32!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVegasolita!5e0!3m2!1ses-419!2sVE!4v00000000000"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div>
+          <p>A 15–25 minutos de Tovar (vía Cucuchica). Sigue la vía principal hasta la zona de balnearios; encontrarás señalización hacia <strong>Vegasolita</strong>.</p>
+          <ul>
+            <li>Estacionamiento en sitio.</li>
+            <li>Acceso a pie a zonas de pozo.</li>
+            <li>Evita vidrios; usa calzado de agua.</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="https://maps.google.com" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            <a class="btn" href="https://waze.com/ul" target="_blank" rel="noopener">Abrir en Waze</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Se puede pagar en Bs. y USD?</summary>
+        <p>Sí. Aceptamos Bs., USD y medios como Pago Móvil y Zelle (confirma antes de tu visita).</p>
+      </details>
+      <details>
+        <summary>¿Puedo llevar parrillera?</summary>
+        <p>Puedes alquilarla con nosotros o traer la tuya si está permitido según disponibilidad y normas vigentes.</p>
+      </details>
+      <details>
+        <summary>¿Hay señal de teléfono?</summary>
+        <p>La cobertura puede variar por operador. Consulta en el sitio para referencias actualizadas.</p>
+      </details>
+      <details>
+        <summary>¿Se permiten mascotas?</summary>
+        <p>Consulta las reglas al reservar; deben mantenerse con correa y bajo supervisión.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto">
+    <div class="container">
+      <h2 class="section-title">Contacto</h2>
+      <div class="grid grid-2 card">
+        <div class="body">
+          <p><strong>Balneario Vegasolita</strong><br>Cucuchica, Tovar — Mérida</p>
+          <p>WhatsApp: <a href="https://wa.me/584121234567" target="_blank" rel="noopener">+58 412 123 4567</a></p>
+          <p>Instagram: <a href="#" target="_blank" rel="noopener">@vegasolita</a></p>
+          <p>Horario: 9:00 AM — 5:00 PM</p>
+        </div>
+        <form class="body form" id="contactForm">
+          <label>
+            <span>Nombre</span>
+            <input type="text" name="name" placeholder="Tu nombre" required />
+          </label>
+          <label>
+            <span>Correo</span>
+            <input type="email" name="email" placeholder="tu@correo.com" required />
+          </label>
+          <label>
+            <span>Mensaje</span>
+            <textarea name="message" rows="3" placeholder="Cuéntanos en qué podemos ayudarte" required></textarea>
+          </label>
+          <button class="btn primary" type="submit">Enviar</button>
+          <p class="muted" id="contactMsg" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>Vegasolita · Cucuchica</strong>
+        <p class="muted">Aguas claras, parrilleras y un día perfecto en los Andes.</p>
+      </div>
+      <div>
+        <p><a href="#reglamento">Reglamento</a></p>
+        <p><a href="#faq">Preguntas frecuentes</a></p>
+      </div>
+      <div>
+        <p><a href="#">Términos</a></p>
+        <p><a href="#">Privacidad</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a class="whatsapp-fab" href="https://wa.me/584121234567?text=Hola%20quiero%20reservar%20en%20Vegasolita%20(Cucuchica)%20para%20[fecha]%20somos%20[personas]" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+    <img src="assets/whatsapp.svg" alt="WhatsApp" width="28" height="28"/>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
