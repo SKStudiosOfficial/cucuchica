@@ -155,17 +155,51 @@ footer{padding:36px 0;color:#bcd0c9}
 }
 .mobile-panel a:hover{ background: rgba(255,255,255,.06); }
 
-/* Burger en estado abierto (opcional “X”) */
-.burger.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-.burger.open span:nth-child(2){ opacity: 0; }
-.burger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
-.burger span{ transition: transform .18s, opacity .18s; }
-
-/* Evitar contorno de foco feo en los botones del header; usar focus visible bonito */
-.btn{ outline: none; }
-.btn:focus-visible{
-  box-shadow: 0 0 0 2px rgba(16,185,129,.45);
+/* Burger: más área táctil y por encima del panel */
+.burger{
+  display:none;
+  position: relative;
+  z-index: 1001;              /* <— evita quedar detrás del panel */
+  flex-direction:column;
+  gap:6px;
+  background:transparent;
+  border:0;
+  padding:10px;               /* hit area mayor */
+  border-radius:12px;
+  -webkit-tap-highlight-color: transparent;
 }
+.burger span{
+  width:26px;height:2px;background:#e5f5ef;border-radius:2px;
+  transition: transform .18s, opacity .18s;
+}
+.burger.open span:nth-child(1){ transform: translateY(8px) rotate(45deg); }
+.burger.open span:nth-child(2){ opacity:0; }
+.burger.open span:nth-child(3){ transform: translateY(-8px) rotate(-45deg); }
+
+/* Panel móvil: capa, animación y bloqueo de scroll */
+.mobile-panel{
+  position: fixed;
+  inset: 64px 0 0 0;
+  z-index: 1000;              /* debajo de la burger, encima del contenido */
+  display: block;
+  pointer-events: none;       /* cerrado: no capta clicks */
+  background: rgba(8,16,14,.96);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 16px;
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: transform .18s ease, opacity .18s ease;
+}
+.mobile-panel.open{
+  pointer-events: auto;
+  transform: translateY(0);
+  opacity: 1;
+}
+.mobile-panel a{
+  display:block;padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08);
+}
+
 
 /* (Opcional) Que los <a> del menú superior no pinten “pill” detrás del botón secundario */
 .nav-links a{ background: transparent; }
