@@ -11,32 +11,107 @@
   --container:1200px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:linear-gradient(180deg,#07110e,#0b0f0d 45%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
+html,body{
+  margin:0;
+  background:linear-gradient(180deg,#07110e,#0b0f0d 45%);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.55
+}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 20px}
 
-/* Header */
-.site-header{position:sticky;top:0;z-index:50;background:rgba(8,16,14,.7);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:800}
+/* ================= Header ================= */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,16,14,.7);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.06)
+}
+.nav{
+  display:grid;
+  grid-template-columns: 1fr auto 1fr; /* brand | links centrados | CTA derecha */
+  align-items:center;
+  gap:12px;
+  height:64px;
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;white-space:nowrap}
 .brand img{width:34px;height:34px;border-radius:10px;box-shadow:0 6px 14px rgba(16,185,129,.35)}
-.nav-links{display:flex;gap:18px}
-.nav-links a{padding:10px 12px;border-radius:12px;opacity:.9}
-.nav-links a:hover{background:rgba(255,255,255,.06);opacity:1}
-.nav-cta{display:flex;gap:10px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:600;border:1px solid rgba(255,255,255,.12);background:#0f1513}
-.btn.primary{background:linear-gradient(135deg,var(--brand),#16a34a);border-color:transparent;color:#08110e;box-shadow:0 8px 18px rgba(16,185,129,.35)}
 
-/* Burger */
-.burger{display:none;flex-direction:column;gap:5px;background:transparent;border:0;padding:6px;border-radius:10px}
-.burger span{width:26px;height:2px;background:#e5f5ef;display:block;border-radius:2px}
+/* Links centrados con “pill” y subrayado animado */
+.nav-links{display:flex;align-items:center;justify-content:center;gap:10px}
+.nav-links a{
+  position:relative;
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:600;
+  color:#dfe9e5;
+  opacity:.95;
+  transition: background .15s ease, opacity .15s ease, transform .15s ease;
+  background: transparent;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;left:14px;right:14px;bottom:6px;
+  height:2px;border-radius:2px;
+  background:linear-gradient(90deg, rgba(16,185,129,0), rgba(16,185,129,.9), rgba(16,185,129,0));
+  transform:scaleX(0);transform-origin:center;transition:transform .18s ease;
+}
+.nav-links a:hover{background:rgba(255,255,255,.06);opacity:1;transform:translateY(-1px)}
+.nav-links a:hover::after{transform:scaleX(1)}
 
-/* Mobile menu */
-.mobile-panel{display:none;position:fixed;inset:64px 0 0 0;background:rgba(8,16,14,.96);backdrop-filter:blur(8px);padding:16px}
-.mobile-panel a{display:block;padding:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+/* CTAs derecha */
+.nav-cta{display:flex;justify-content:flex-end;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:600;border:1px solid rgba(255,255,255,.12);background:#0f1513;outline:none}
+.btn:focus-visible{box-shadow:0 0 0 2px rgba(16,185,129,.45)}
+.site-header .nav-cta .btn{background:transparent;border-color:rgba(255,255,255,.12);color:var(--text)}
+.site-header .nav-cta .btn:hover{background:rgba(255,255,255,.06)}
+.site-header .nav-cta .btn.primary{
+  background:linear-gradient(135deg,var(--brand),#16a34a);
+  color:#08110e;border-color:transparent;box-shadow:0 8px 18px rgba(16,185,129,.35)
+}
 
-/* Hero */
+/* ================= Burger + Panel móvil ================= */
+.burger{
+  display:none;               /* visible solo en móvil */
+  position:relative;
+  z-index:1001;               /* por encima del panel */
+  flex-direction:column;
+  gap:6px;
+  background:transparent;
+  border:0;
+  padding:10px;               /* área táctil grande */
+  border-radius:12px;
+  -webkit-tap-highlight-color:transparent;
+}
+.burger span{
+  width:26px;height:2px;background:#e5f5ef;border-radius:2px;
+  transition:transform .18s, opacity .18s;
+}
+.burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+.mobile-panel{
+  position:fixed; inset:64px 0 0 0;
+  z-index:1000;              /* debajo de la burger */
+  display:block;             /* visibilidad por opacidad/pointer-events */
+  pointer-events:none;       /* cerrado: no capta clicks */
+  background:rgba(8,16,14,.96);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  padding:16px;
+  transform:translateY(-8px);
+  opacity:0;
+  transition:transform .18s ease, opacity .18s ease;
+}
+.mobile-panel.open{pointer-events:auto;transform:translateY(0);opacity:1}
+.mobile-panel a{
+  display:block;padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08);color:var(--text)
+}
+.mobile-panel a:hover{background:rgba(255,255,255,.06)}
+
+/* ================= Hero ================= */
 .hero{position:relative;padding:72px 0 56px;overflow:hidden}
 .hero .bg{position:absolute;inset:0;background:url('assets/hero.webp') center/cover no-repeat;filter:brightness(.65)}
 .hero .overlay{position:absolute;inset:0;background:radial-gradient(1200px 400px at 50% 0,rgba(16,185,129,.35),transparent 60%),linear-gradient(180deg,rgba(7,17,14,.65),rgba(7,17,14,1))}
@@ -47,19 +122,17 @@ a{color:inherit;text-decoration:none}
 .sub{color:var(--muted);max-width:760px}
 .hero-ctas{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
 
-/* Badges */
+/* ================= Badges / Status ================= */
 .badges{margin-top:26px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .badge{display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06);border-radius:14px}
-
-/* Status bar */
 .status{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#0f1513;border:1px solid rgba(255,255,255,.08)}
 
-/* Sections */
+/* ================= Secciones ================= */
 section{padding:60px 0;border-top:1px solid rgba(255,255,255,.06)}
 .section-title{font-size:clamp(22px,3vw,34px);margin:0 0 26px}
 
-/* Cards grid */
+/* ================= Cards / Grids ================= */
 .grid{display:grid;gap:18px}
 .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -98,110 +171,22 @@ footer{padding:36px 0;color:#bcd0c9}
 .footer-grid{display:grid;gap:18px;grid-template-columns:2fr 1fr 1fr}
 .muted{color:var(--muted)}
 
-/* Sticky WhatsApp */
-.whatsapp-fab{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:999px;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 22px rgba(37,211,102,.4);z-index:60}
+/* WhatsApp FAB */
+.whatsapp-fab{
+  position:fixed;right:18px;bottom:18px;
+  width:56px;height:56px;border-radius:999px;background:#25D366;
+  display:grid;place-items:center;box-shadow:0 10px 22px rgba(37,211,102,.4);z-index:60
+}
 
-/* Responsive */
-@media (max-width: 980px){
+/* ================= Responsive ================= */
+@media (max-width:980px){
+  .nav{grid-template-columns:1fr auto 1fr}
   .nav-links, .nav-cta{display:none}
   .burger{display:flex}
+
   .badges{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr}
   .grid-2{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .form .row{grid-template-columns:1fr}
 }
-
-/* ---- Header: limpiar estilos de botones para que no se vean "dobles" ---- */
-.site-header .nav-cta .btn{
-  background: transparent;
-  border-color: rgba(255,255,255,.12);
-  color: var(--text);
-}
-.site-header .nav-cta .btn:hover{
-  background: rgba(255,255,255,.06);
-}
-.site-header .nav-cta .btn.primary{
-  background: linear-gradient(135deg,var(--brand),#16a34a);
-  color: #08110e;
-  border-color: transparent;
-  box-shadow: 0 8px 18px rgba(16,185,129,.35);
-}
-
-/* ---- Mobile panel: capa visible y animación ---- */
-.mobile-panel{
-  position: fixed;
-  inset: 64px 0 0 0;
-  display: none;               /* por defecto cerrado */
-  z-index: 999;                /* por encima del header y del contenido */
-  background: rgba(8,16,14,.96);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  padding: 16px;
-  transform: translateY(-8px);
-  opacity: 0;
-  transition: transform .18s ease, opacity .18s ease;
-}
-.mobile-panel.open{
-  display: block;
-  transform: translateY(0);
-  opacity: 1;
-}
-.mobile-panel a{
-  display:block;
-  padding:14px 12px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  color: var(--text);
-}
-.mobile-panel a:hover{ background: rgba(255,255,255,.06); }
-
-/* Burger: más área táctil y por encima del panel */
-.burger{
-  display:none;
-  position: relative;
-  z-index: 1001;              /* <— evita quedar detrás del panel */
-  flex-direction:column;
-  gap:6px;
-  background:transparent;
-  border:0;
-  padding:10px;               /* hit area mayor */
-  border-radius:12px;
-  -webkit-tap-highlight-color: transparent;
-}
-.burger span{
-  width:26px;height:2px;background:#e5f5ef;border-radius:2px;
-  transition: transform .18s, opacity .18s;
-}
-.burger.open span:nth-child(1){ transform: translateY(8px) rotate(45deg); }
-.burger.open span:nth-child(2){ opacity:0; }
-.burger.open span:nth-child(3){ transform: translateY(-8px) rotate(-45deg); }
-
-/* Panel móvil: capa, animación y bloqueo de scroll */
-.mobile-panel{
-  position: fixed;
-  inset: 64px 0 0 0;
-  z-index: 1000;              /* debajo de la burger, encima del contenido */
-  display: block;
-  pointer-events: none;       /* cerrado: no capta clicks */
-  background: rgba(8,16,14,.96);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  padding: 16px;
-  transform: translateY(-8px);
-  opacity: 0;
-  transition: transform .18s ease, opacity .18s ease;
-}
-.mobile-panel.open{
-  pointer-events: auto;
-  transform: translateY(0);
-  opacity: 1;
-}
-.mobile-panel a{
-  display:block;padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-
-/* (Opcional) Que los <a> del menú superior no pinten “pill” detrás del botón secundario */
-.nav-links a{ background: transparent; }
-.nav-links a:hover{ background: rgba(255,255,255,.06); }
-
