@@ -190,3 +190,53 @@ footer{padding:36px 0;color:#bcd0c9}
   .footer-grid{grid-template-columns:1fr}
   .form .row{grid-template-columns:1fr}
 }
+
+/* === Nav colors on scroll / active === */
+:root{
+  --nav-bg: rgba(8,16,14,.7);
+  --nav-solid:#0e141a;
+  --nav-border: rgba(255,255,255,.08);
+}
+
+/* estado base ya lo tenías, solo homogenizamos variable */
+.site-header{
+  background: var(--nav-bg);
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+/* al hacer scroll o al abrir el menú: sólido y con leve sombra */
+.site-header.scrolled,
+.site-header.active{
+  background: var(--nav-solid);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+/* Bloqueo de scroll cuando el panel móvil está abierto (robusto para iOS) */
+html.no-scroll, body.no-scroll {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+/* Burger “chip” activa con glow sutil */
+.burger{
+  transition: background .18s ease, box-shadow .18s ease;
+}
+.burger.open{
+  background: rgba(16,185,129,.12);
+  box-shadow: 0 8px 18px rgba(16,185,129,.25);
+}
+.burger.open span{ background:#cffff0; }
+
+/* Panel móvil: detallito de borde superior con la marca */
+.mobile-panel{
+  border-top: 1px solid var(--nav-border);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35) inset;
+}
+.mobile-panel.open{
+  /* leve degradado para diferenciar estado activo */
+  background: linear-gradient(180deg, rgba(8,16,14,.97), rgba(8,16,14,.94));
+}
+
