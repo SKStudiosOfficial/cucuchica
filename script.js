@@ -30,6 +30,18 @@ if (burger && panel) {
   );
 }
 
+// Failsafe: al cambiar ancho >= 980px, cerramos panel y restauramos scroll
+window.addEventListener("resize", () => {
+  if (window.innerWidth >= 980 && panel.classList.contains("open")) {
+    panel.classList.remove("open");
+    burger.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+    panel.setAttribute("aria-hidden", "true");
+    document.documentElement.style.overflow = "";
+  }
+});
+
+
 // Reserva vía WhatsApp
 const reserveForm = document.getElementById("reserveForm");
 if (reserveForm) {
