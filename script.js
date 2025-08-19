@@ -1,4 +1,3 @@
-
 // Configuración — cambia por el número real de WhatsApp con código de país
 const CONFIG = {
   whatsapp: "+584120702811"
@@ -7,6 +6,12 @@ const CONFIG = {
 // Burger y menú móvil
 const burger = document.getElementById("burger");
 const panel = document.getElementById("mobile-panel");
+const header = document.querySelector(".site-header");
+
+function setNoScroll(on) {
+  document.documentElement.classList.toggle("no-scroll", on);
+  document.body.classList.toggle("no-scroll", on);
+}
 
 if (burger && panel) {
   const toggle = () => {
@@ -14,7 +19,8 @@ if (burger && panel) {
     burger.classList.toggle("open", isOpen);
     burger.setAttribute("aria-expanded", String(isOpen));
     panel.setAttribute("aria-hidden", String(!isOpen));
-    document.documentElement.style.overflow = isOpen ? "hidden" : ""; // bloquear scroll al abrir
+    header && header.classList.toggle("active", isOpen);
+    setNoScroll(isOpen);
   };
 
   burger.addEventListener("click", toggle);
@@ -25,22 +31,35 @@ if (burger && panel) {
       burger.classList.remove("open");
       burger.setAttribute("aria-expanded", "false");
       panel.setAttribute("aria-hidden", "true");
-      document.documentElement.style.overflow = "";
+      header && header.classList.remove("active");
+      setNoScroll(false);
     })
   );
 }
 
+// Header sólido al hacer scroll
+const onScroll = () => {
+  if (!header) return;
+  const scrolled = window.scrollY > 10;
+  // si el menú está activo, prima .active; si no, usamos .scrolled
+  if (!header.classList.contains("active")) {
+    header.classList.toggle("scrolled", scrolled);
+  }
+};
+window.addEventListener("scroll", onScroll);
+onScroll(); // estado inicial por si cargamos más abajo
+
 // Failsafe: al cambiar ancho >= 980px, cerramos panel y restauramos scroll
 window.addEventListener("resize", () => {
-  if (window.innerWidth >= 980 && panel.classList.contains("open")) {
+  if (window.innerWidth >= 980 && panel && panel.classList.contains("open")) {
     panel.classList.remove("open");
-    burger.classList.remove("open");
-    burger.setAttribute("aria-expanded", "false");
+    burger && burger.classList.remove("open");
+    burger && burger.setAttribute("aria-expanded", "false");
     panel.setAttribute("aria-hidden", "true");
-    document.documentElement.style.overflow = "";
+    header && header.classList.remove("active");
+    setNoScroll(false);
   }
 });
-
 
 // Reserva vía WhatsApp
 const reserveForm = document.getElementById("reserveForm");
