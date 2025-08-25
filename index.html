@@ -23,7 +23,7 @@
 </head>
 <body>
   <!-- Header / Nav -->
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="container nav">
       <a class="brand" href="#inicio" aria-label="Inicio Vegasolita">
         <img src="assets/logo-vegasolita.svg" alt="Logo Vegasolita" />
@@ -45,19 +45,43 @@
         <a class="btn primary" href="#reservas">Reservar</a>
       </div>
 
-      <button class="burger" id="burger" aria-label="Abrir menú" aria-controls="mobile-panel" aria-expanded="false">
-        <span></span><span></span><span></span>
+      <!-- Botón hamburguesa (visible solo <980px) -->
+      <button id="burger" class="burger" aria-label="Abrir menú" aria-controls="mobileNav" aria-expanded="false">
+        <span class="line" aria-hidden="true"></span>
+        <span class="line" aria-hidden="true"></span>
+        <span class="line" aria-hidden="true"></span>
       </button>
     </div>
-    <div id="mobile-panel" class="mobile-panel" aria-hidden="true">
-      <a href="#servicios" data-close>Servicios</a>
-      <a href="#precios" data-close>Precios</a>
-      <a href="#reservas" data-close>Reservas</a>
-      <a href="#galeria" data-close>Galería</a>
-      <a href="#como-llegar" data-close>Cómo llegar</a>
-      <a href="#faq" data-close>FAQ</a>
-      <a href="#contacto" data-close>Contacto</a>
+  </header>
+
+  <!-- Panel móvil -->
+  <div id="mobileNav" class="mobile-panel" aria-hidden="true">
+    <div class="mobile-header">
+      <a class="brand mini" href="#inicio" aria-label="Inicio Vegasolita">
+        <img src="assets/logo-vegasolita.svg" alt="Logo Vegasolita" />
+        <span>Vegasolita</span>
+      </a>
+      <button class="close" aria-label="Cerrar menú" id="closeMobile">&times;</button>
     </div>
+
+    <nav class="mobile-links" aria-label="Navegación móvil">
+      <a href="#servicios" style="--i:1">Servicios</a>
+      <a href="#precios" style="--i:2">Precios</a>
+      <a href="#reservas" style="--i:3">Reservas</a>
+      <a href="#galeria" style="--i:4">Galería</a>
+      <a href="#como-llegar" style="--i:5">Cómo llegar</a>
+      <a href="#faq" style="--i:6">FAQ</a>
+      <a href="#contacto" style="--i:7">Contacto</a>
+    </nav>
+
+    <div class="mobile-cta">
+      <a class="btn" href="#precios" style="--i:8">Ver precios</a>
+      <a class="btn primary" href="#reservas" style="--i:9">Reservar</a>
+    </div>
+  </div>
+
+  <!-- Fondo oscuro -->
+  <div id="backdrop" class="backdrop" hidden></div>
   </header>
 
   <!-- Hero -->
@@ -217,7 +241,7 @@
               <li>Te llevamos a WhatsApp con el mensaje listo.</li>
               <li>Confirma pago y listo. ¡Te esperamos!</li>
             </ol>
-            <p class="muted">Métodos: Bs. / USD / Pago Móvil / Zelle / Punto (consultar).</p>
+            <p class="muted">Métodos: Bs. / USD / Pago Móvil / USDT/ Punto de Venta.</p>
           </div>
         </div>
       </div>
@@ -230,7 +254,7 @@
       <h2 class="section-title">Galería</h2>
       <div class="grid grid-3">
         <img src="assets/gal-1.webp" alt="Pozo natural en Vegasolita" loading="lazy" />
-        <img src="assets/gal-2.webp" alt="Cascada de Cucuchica" loading="lazy" />
+        <img src="assets/gal-2.webp" alt="Cascada del pozo" loading="lazy" />
         <img src="assets/gal-3.webp" alt="Áreas verdes y familiares" loading="lazy" />
       </div>
     </div>
@@ -265,19 +289,19 @@
       <h2 class="section-title">Preguntas frecuentes</h2>
       <details>
         <summary>¿Se puede pagar en Bs. y USD?</summary>
-        <p>Sí. Aceptamos Bs., USD y medios como Pago Móvil y Zelle (confirma antes de tu visita).</p>
+        <p>Sí. Aceptamos Bs., USD y medios como Pago Móvil y USDT.</p>
       </details>
       <details>
         <summary>¿Puedo llevar parrillera?</summary>
-        <p>Puedes alquilarla con nosotros o traer la tuya si está permitido según disponibilidad y normas vigentes.</p>
+        <p>Los quioscos de alquiler ya incluyen parrilleras y lo necesario para cocinar. Por seguridad y orden, no se permite el uso de parrilleras en las áreas verdes, ya que están destinadas a otras actividades. Si deseas cocinar, te recomendamos reservar un quiosco equipado</p>
       </details>
       <details>
         <summary>¿Hay señal de teléfono?</summary>
-        <p>La cobertura puede variar por operador. Consulta en el sitio para referencias actualizadas.</p>
+        <p>No hay cobertura de telefonía móvil de ninguna operadora en el área. Para la comunicación de los clientes, contamos con red Wi-Fi y acceso a internet.</p>
       </details>
       <details>
         <summary>¿Se permiten mascotas?</summary>
-        <p>Consulta las reglas al reservar; deben mantenerse con correa y bajo supervisión.</p>
+        <p>í. Se admiten mascotas siempre que permanezcan bajo supervisión de sus dueños y no presenten conductas agresivas que puedan generar riesgos para otras personas.</p>
       </details>
     </div>
   </section>

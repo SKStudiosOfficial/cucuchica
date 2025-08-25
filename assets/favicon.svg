@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Vegasolita — Icono</title>
+  <defs>
+    <linearGradient id="gradA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="gradB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bff2df" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#bff2df" stop-opacity="0.65"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Gota -->
+  <path d="M32 4
+           C22 4, 14 12, 14 22
+           C14 36, 32 56, 32 56
+           C32 56, 50 36, 50 22
+           C50 12, 42 4, 32 4 Z"
+        fill="url(#gradA)"/>
+  <!-- Olas internas -->
+  <path d="M18 33 C24 29, 40 29, 46 33 C40 37, 24 37, 18 33 Z"
+        fill="url(#gradB)"/>
+  <path d="M20 39 C26 36, 38 36, 44 39 C38 42, 26 42, 20 39 Z"
+        fill="url(#gradB)"/>
+  <!-- Brillo superior -->
+  <path d="M23 16 C27 12, 37 12, 41 16 C36 17, 28 17, 23 16 Z"
+        fill="#ffffff" opacity="0.18"/>
+</svg>

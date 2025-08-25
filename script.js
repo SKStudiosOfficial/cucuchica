@@ -1,67 +1,80 @@
-// Configuración — cambia por el número real de WhatsApp con código de país
-const CONFIG = {
-  whatsapp: "+584120702811"
-};
+// ================== CONFIG ==================
+const CONFIG = { whatsapp: "+584120702811" };
 
-// Burger y menú móvil
-const burger = document.getElementById("burger");
-const panel = document.getElementById("mobile-panel");
-const header = document.querySelector(".site-header");
+// ================== NAV: refs ==================
+const header   = document.querySelector(".site-header");
+const burger   = document.getElementById("burger");
+const panel    = document.getElementById("mobileNav");
+const backdrop = document.getElementById("backdrop");
+const btnClose = document.getElementById("closeMobile");
 
-function setNoScroll(on) {
-  document.documentElement.classList.toggle("no-scroll", on);
-  document.body.classList.toggle("no-scroll", on);
+// Bloqueo de scroll (HTML + body) — compatible iOS
+function setNoScroll(state){
+  document.documentElement.classList.toggle("no-scroll", state);
+  document.body.classList.toggle("no-scroll", state);
 }
 
-if (burger && panel) {
-  const toggle = () => {
-    const isOpen = panel.classList.toggle("open");
-    burger.classList.toggle("open", isOpen);
-    burger.setAttribute("aria-expanded", String(isOpen));
-    panel.setAttribute("aria-hidden", String(!isOpen));
-    header && header.classList.toggle("active", isOpen);
-    setNoScroll(isOpen);
-  };
-
-  burger.addEventListener("click", toggle);
-
-  panel.querySelectorAll("[data-close]").forEach(a =>
-    a.addEventListener("click", () => {
-      panel.classList.remove("open");
-      burger.classList.remove("open");
-      burger.setAttribute("aria-expanded", "false");
-      panel.setAttribute("aria-hidden", "true");
-      header && header.classList.remove("active");
-      setNoScroll(false);
-    })
-  );
+// Abrir / cerrar panel
+function openPanel(){
+  if (!panel) return;
+  panel.classList.add("open");
+  panel.setAttribute("aria-hidden","false");
+  backdrop && (backdrop.hidden = false, backdrop.classList.add("show"));
+  burger && (burger.classList.add("open"), burger.setAttribute("aria-expanded","true"));
+  header && header.classList.add("active");
+  setNoScroll(true);
+  // primer foco útil
+  const first = panel.querySelector("a, button, input, select, textarea");
+  first && first.focus();
+}
+function closePanel(){
+  if (!panel) return;
+  panel.classList.remove("open");
+  panel.setAttribute("aria-hidden","true");
+  burger && (burger.classList.remove("open"), burger.setAttribute("aria-expanded","false"));
+  header && header.classList.remove("active");
+  setNoScroll(false);
+  if (backdrop){
+    backdrop.classList.remove("show");
+    // esperar transición para ocultar del árbol accesible
+    setTimeout(()=>{ backdrop.hidden = true; }, 200);
+  }
 }
 
-// Header sólido al hacer scroll
+// Eventos UI
+burger && burger.addEventListener("click", () => {
+  panel && panel.classList.contains("open") ? closePanel() : openPanel();
+});
+btnClose && btnClose.addEventListener("click", closePanel);
+backdrop && backdrop.addEventListener("click", closePanel);
+
+// Cerrar al navegar o con Escape
+panel && panel.addEventListener("click", (e) => {
+  if (e.target.matches('a[href^="#"]')) closePanel();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && panel && panel.classList.contains("open")) closePanel();
+});
+
+// Header sólido al hacer scroll (sin pisar .active)
 const onScroll = () => {
   if (!header) return;
   const scrolled = window.scrollY > 10;
-  // si el menú está activo, prima .active; si no, usamos .scrolled
   if (!header.classList.contains("active")) {
     header.classList.toggle("scrolled", scrolled);
   }
 };
 window.addEventListener("scroll", onScroll);
-onScroll(); // estado inicial por si cargamos más abajo
+onScroll(); // estado inicial
 
-// Failsafe: al cambiar ancho >= 980px, cerramos panel y restauramos scroll
+// Failsafe: al cambiar a >=980px, cerramos panel y restauramos scroll
 window.addEventListener("resize", () => {
   if (window.innerWidth >= 980 && panel && panel.classList.contains("open")) {
-    panel.classList.remove("open");
-    burger && burger.classList.remove("open");
-    burger && burger.setAttribute("aria-expanded", "false");
-    panel.setAttribute("aria-hidden", "true");
-    header && header.classList.remove("active");
-    setNoScroll(false);
+    closePanel();
   }
 });
 
-// Reserva vía WhatsApp
+// ================== RESERVA POR WHATSAPP ==================
 const reserveForm = document.getElementById("reserveForm");
 if (reserveForm) {
   reserveForm.addEventListener("submit", (e) => {
@@ -83,7 +96,7 @@ if (reserveForm) {
   });
 }
 
-// Formulario de contacto (simulación)
+// ================== CONTACTO (simulado) ==================
 const contactForm = document.getElementById("contactForm");
 const contactMsg = document.getElementById("contactMsg");
 if (contactForm && contactMsg) {
@@ -93,7 +106,7 @@ if (contactForm && contactMsg) {
   });
 }
 
-// Clima (placeholder con estado aleatorio)
+// ================== CLIMA (placeholder aleatorio) ==================
 const climaEl = document.getElementById("clima");
 if (climaEl) {
   const estados = ["despejado", "parcialmente nublado", "probables lluvias", "soleado"];
